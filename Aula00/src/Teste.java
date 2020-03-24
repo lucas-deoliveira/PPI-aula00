@@ -12,7 +12,7 @@ public class Teste {
 		System.out.println("conectou");
 		
 		p = new Pais("HOLANDA", 444444, 555555);
-		p.incluir(conexao);
+		p.incluir();
 		p= new Pais();
 		p.consultapopulacao(conexao);
 		p.maiorpopulacao();
@@ -20,6 +20,8 @@ public class Teste {
 		p.menorArea();
 		System.out.println("==================================================================");
 		p.vetorTresPaises();
+		Pais pais =new Pais();
+		pais.carregar(1);
 
 	}
 

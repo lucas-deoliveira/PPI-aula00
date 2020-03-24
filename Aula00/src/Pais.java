@@ -11,6 +11,7 @@ public class Pais {
 	double area;
 	ArrayList<Pais> lista = new ArrayList<>();
 	Connection conexao=null;
+	ConexaoDB db = new ConexaoDB();
 	
 	public Pais() {
 		
@@ -57,7 +58,8 @@ public class Pais {
 		this.area = area;
 	}
 
-	public void incluir(Connection conn) throws SQLException {
+	public void incluir() throws SQLException {
+		Connection conn = db.conectar();
 		String sqlInsert = "INSERT INTO pais(nome,populacao,area) VALUES (?,?,?)";
 		
 		try (PreparedStatement stm = conn.prepareStatement(sqlInsert);){
@@ -133,6 +135,25 @@ public class Pais {
 		}
 		
 		return lista;
+	}
+	
+	public void carregar(int j) throws SQLException {
+		String carrega = "SELECT nome,populacao,area FROM pais WHERE id=?";
+		ConexaoDB db=new ConexaoDB();
+		try(Connection conn = db.conectar(); PreparedStatement stm = conn.prepareStatement(carrega);){
+			stm.setInt(1, j);
+			try (ResultSet rs = stm.executeQuery();){
+				while(rs.next())	{
+					setNome(rs.getString("nome"));
+					setPopulacao(rs.getLong("populacao"));
+					setArea(rs.getDouble("area"));
+				}
+			}
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
