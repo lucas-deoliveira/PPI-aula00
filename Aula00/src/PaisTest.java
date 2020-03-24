@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
@@ -29,6 +28,15 @@ class PaisTest {
 		id = pais.getId();
 		copia.setId(id);
 		assertEquals("Testa inclusao", pais, copia);
+	}
+	@Test
+	
+	void testAtualizar() throws SQLException {
+		pais.setPopulacao(123456789);
+		copia.setPopulacao(123456789);
+		pais.atualiza();
+		pais.carregar(pais.getId());
+		assertEquals("teste atualizacao", pais, copia);
 	}
 
 

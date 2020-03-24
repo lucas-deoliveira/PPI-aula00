@@ -96,7 +96,8 @@ public class Pais {
 		}
 	}
 	
-	public void atualiza(Connection conn, long popuplacao, double area) throws SQLException {
+	public void atualiza() throws SQLException {
+		Connection conn = db.conectar();
 		String sqlUpdate = "UPDATE pais SET populacao= ?, area=? WHERE id=? ";
 		try(PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
 			stm.setLong(1, getPopulacao());
