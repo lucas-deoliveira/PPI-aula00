@@ -38,6 +38,34 @@ class PaisTest {
 		pais.carregar(pais.getId());
 		assertEquals("teste atualizacao", pais, copia);
 	}
+	
+	@Test
+	void testExcluir() throws SQLException {
+		Pais vazio = new Pais();
+		pais.excluir();
+		assertEquals("teste exclusao", pais, vazio);
+		
+	}
+	
+	@Test
+	void testmaiorPopulacao() throws SQLException {
+		Pais teste = new Pais();
+		teste.consultapopulacao();
+		teste.maiorpopulacao();
+		assertEquals("teste maior populacao", teste.getPopulacao(),207833825);
+	}
+	
+	
+	@Test
+	void testmenorArea() throws SQLException {
+		Pais teste = new Pais();
+		teste.consultapopulacao();
+		teste.menorArea();
+		System.out.println(teste.getArea());
+		
+		assertEquals("teste menor area", teste.getArea(),222.0);
+		
+	}
 
 
 }

@@ -14,7 +14,7 @@ public class Teste {
 		p = new Pais("HOLANDA", 444444, 555555);
 		p.incluir();
 		p= new Pais();
-		p.consultapopulacao(conexao);
+		p.consultapopulacao();
 		p.maiorpopulacao();
 		System.out.println("==================================================================");
 		p.menorArea();

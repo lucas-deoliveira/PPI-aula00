@@ -79,7 +79,8 @@ public class Pais {
 		}
 	}
 	
-	public void excluir(Connection conn) throws SQLException {
+	public void excluir() throws SQLException {
+		Connection conn = db.conectar();
 		String sqlDelete = "DELETE FROM pais Where id = ?";
 		try (PreparedStatement stm = conn.prepareStatement(sqlDelete);){
 			stm.setInt(1, getId());
@@ -116,7 +117,8 @@ public class Pais {
 		}
 	}
 	
-	public ArrayList<Pais> consultapopulacao (Connection conn) throws SQLException {
+	public ArrayList<Pais> consultapopulacao () throws SQLException {
+		Connection conn = db.conectar();
 		String consulta = "select id,nome,populacao,area from pais";
 		
 		
@@ -165,6 +167,8 @@ public class Pais {
 			if(popula<populacao.getPopulacao()) {
 				popula=populacao.getPopulacao();
 				nome = populacao.getNome();
+				this.setNome(nome);
+				this.setPopulacao(popula);
 				
 		}
 		}
@@ -177,7 +181,10 @@ public class Pais {
 		for(Pais pais : lista) {	
 			
 			if(area==0 ||area>pais.getArea()) {
-				area=pais.getArea(); nome=pais.getNome();}
+				area=pais.getArea(); nome=pais.getNome();
+			this.setNome(nome);;
+			this.setArea(area);
+			}
 		}
 		System.out.println("Pais: "+nome+", Area: "+area);
 	}
